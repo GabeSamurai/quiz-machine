@@ -77,7 +77,7 @@ func ReadPath() string {
 }
 
 func WritePath(path string) {
-	file, err := os.OpenFile("path.txt", os.O_WRONLY, 0644)
+	file, err := os.OpenFile("path.txt", os.O_WRONLY|os.O_TRUNC, 0644)
 	CheckError(err)
 
 	defer file.Close()
