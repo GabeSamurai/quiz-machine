@@ -4,4 +4,4 @@ Just a simple quiz program. A quiz will be shown and you can answer it in a give
 
 - path.txt will be created if there is none
 - there must be a file named quiz.csv
-- if there is a path.txt created, you can change the starting quiz
+- if there is a path.txt created, you can change the starting quiz in it or inside the program
