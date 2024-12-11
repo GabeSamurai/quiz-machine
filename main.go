@@ -14,7 +14,7 @@ import (
 
 func CheckError(err error) {
 	if err != nil {
-		panic(err)
+		//fmt.Println(err)
 	}
 }
 
@@ -60,24 +60,24 @@ func ReadAnswer1(answer chan<- string) {
 }
 
 func ReadPath() string {
-	file, err := os.OpenFile("/uploads/path.txt", os.O_RDWR|os.O_CREATE, 0755)
+	file, err := os.OpenFile("path.txt", os.O_RDWR|os.O_CREATE, 0755)
 	CheckError(err)
-	
+
 	defer file.Close()
 
-    var path []byte
+	var path []byte
 	file.Read(path)
-	
+
 	if path == nil {
-	    file.WriteString("/uploads/quiz.csv")
-	    return "/uploads/quiz.csv"
+		file.WriteString("quiz.csv")
+		return "quiz.csv"
 	}
 
 	return string(path)
 }
 
 func WritePath(path string) {
-	file, err := os.OpenFile("/uploads/path.txt", os.O_WRONLY, 0644)
+	file, err := os.OpenFile("path.txt", os.O_WRONLY, 0644)
 	CheckError(err)
 
 	defer file.Close()
@@ -96,12 +96,12 @@ func ShowMenu() {
 	change := false
 
 	for {
-	    if path == "" {
-	        fmt.Println("REQUESTED CREATED FILE: Quiz.csv")
-	        fmt.Println("PROGRAM TERMINATED")
-	        break
-	    }
-	    
+		if ReadQuiz(path) == nil {
+			fmt.Println("REQUESTED CREATED FILE: quiz.csv")
+			fmt.Println("PROGRAM TERMINATED")
+			break
+		}
+
 		fmt.Println("= = = = = = = = = = = = QUIZ MACHINE = = = = = = = = = = = =")
 		fmt.Println("")
 		fmt.Println("Welcome to the quiz machine, where you can test your knowledge!")
